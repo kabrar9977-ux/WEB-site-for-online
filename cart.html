@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuySouqX - Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="showCart()">
+
+<div class="navbar">
+    <h2>BuySouqX</h2>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products..." onkeyup="handleSearch(event)">
+        <button type="button" onclick="performSearch(this.closest('.search-bar'))">Search</button>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html" class="active">Cart <span class="cart-badge" id="cartBadge">0</span></a>
+        <a href="login.html">Login</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</div>
+
+<div class="page-header">
+    <h1>Your Shopping Cart</h1>
+    <p>Products you added will appear here</p>
+</div>
+
+<div class="section">
+    <div class="cart-box">
+        <div id="cartItems"></div>
+
+        <hr>
+
+        <div class="cart-item total">
+            <span>Total</span>
+            <b id="cartTotal">0 SAR</b>
+        </div>
+
+        <div id="cartButtons">
+            <button onclick="goToCheckout()">Checkout</button>
+            <button onclick="clearCart()">Clear Cart</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p> 2026 BuySouqX. All Rights Reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script src="auth.js"></script>
+<script>
+function handleSearch(event) {
+    if (event.key === 'Enter') {
+        performSearch();
+    }
+}
+
+function performSearch() {
+    let searchValue = document.getElementById('searchInput').value.trim();
+    if (searchValue) {
+        window.location.href = `products.html?search=${encodeURIComponent(searchValue)}`;
+    }
+}
+
+function goToCheckout() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    if (cart.length === 0) {
+        alert("Your cart is empty. Add items before checkout.");
+        return;
+    }
+    window.location.href = "Checkout.html";
+}
+</script>
+</body>
+</html>

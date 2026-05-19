@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuySouqX - Contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>BuySouqX</h2>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products..." onkeyup="handleSearch(event)">
+        <button type="button" onclick="performSearch(this.closest('.search-bar'))">Search</button>
+    </div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart <span class="cart-badge" id="cartBadge">0</span></a>
+        <a href="login.html">Login</a>
+        <a href="contact.html" class="active">Contact</a>
+    </div>
+</div>
+
+<div class="page-header">
+    <h1>Contact Us</h1>
+    <p>Need help? Send us a message</p>
+</div>
+
+<div class="section">
+    <div class="contact-info">
+        <div>
+            <h3>Email</h3>
+            <p>support@buysouqx.com</p>
+        </div>
+
+        <div>
+            <h3>Phone</h3>
+            <p>+966 500 000 000</p>
+        </div>
+
+        <div>
+            <h3>Location</h3>
+            <p>Riyadh, Saudi Arabia</p>
+        </div>
+    </div>
+
+    <div class="form-box">
+        <form id="contactForm" onsubmit="sendContactMessage(event)">
+            <input id="contactName" type="text" placeholder="Your Name" required>
+            <input id="contactEmail" type="email" placeholder="Your Email" required>
+            <textarea id="contactMessage" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 BuySouqX. All Rights Reserved.</p>
+</footer>
+
+<script src="auth.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

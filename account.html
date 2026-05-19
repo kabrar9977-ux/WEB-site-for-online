@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuySouqX - My Account</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="loadAccount()">
+
+<div class="navbar">
+    <h2>BuySouqX</h2>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products..." onkeyup="handleSearch(event)">
+        <button type="button" onclick="performSearch(this.closest('.search-bar'))">Search</button>
+    </div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart <span class="cart-badge" id="cartBadge">0</span></a>
+        <a href="account.html" class="active">My Account</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</div>
+
+<div class="page-header">
+    <h1>My Account</h1>
+    <p>Manage your profile and view your order history</p>
+</div>
+
+<div class="section">
+    <div class="account-container">
+        <!-- User Profile Section -->
+        <div class="account-section">
+            <div class="section-header">
+                <h2>Profile Information</h2>
+                <button class="edit-btn" onclick="toggleEditMode()">Edit Profile</button>
+            </div>
+            
+            <div class="profile-info" id="profileInfo">
+                <div class="info-row">
+                    <span class="label">Name:</span>
+                    <span class="value" id="displayName">Loading...</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Email:</span>
+                    <span class="value" id="displayEmail">Loading...</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Phone:</span>
+                    <span class="value" id="displayPhone">Loading...</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Member Since:</span>
+                    <span class="value" id="displayMemberSince">Loading...</span>
+                </div>
+            </div>
+            
+            <div class="profile-edit" id="profileEdit" style="display: none;">
+                <form onsubmit="updateProfile(event)">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <input type="text" id="editFirstName" placeholder="First Name" required>
+                            <label for="editFirstName">First Name</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="editLastName" placeholder="Last Name" required>
+                            <label for="editLastName">Last Name</label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <input type="email" id="editEmail" placeholder="Email Address" required>
+                        <label for="editEmail">Email Address</label>
+                    </div>
+                    
+                    <div class="input-group">
+                        <input type="tel" id="editPhone" placeholder="Phone Number" required>
+                        <label for="editPhone">Phone Number</label>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="submit" class="save-btn">Save Changes</button>
+                        <button type="button" class="cancel-btn" onclick="toggleEditMode()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Order History Section -->
+        <div class="account-section">
+            <div class="section-header">
+                <h2>Order History</h2>
+                <span class="order-count" id="orderCount">0 orders</span>
+            </div>
+            
+            <div id="ordersList">
+                <p class="no-orders">You haven't placed any orders yet.</p>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="account-section">
+            <div class="section-header">
+                <h2>Quick Actions</h2>
+            </div>
+            
+            <div class="action-grid">
+                <div class="action-card" onclick="window.location.href='products.html'">
+                    <div class="action-icon">🛍️</div>
+                    <h3>Continue Shopping</h3>
+                    <p>Browse our latest products</p>
+                </div>
+                
+                <div class="action-card" onclick="window.location.href='cart.html'">
+                    <div class="action-icon">🛒</div>
+                    <h3>View Cart</h3>
+                    <p>Check your shopping cart</p>
+                </div>
+                
+                <div class="action-card" onclick="window.location.href='contact.html'">
+                    <div class="action-icon">📞</div>
+                    <h3>Contact Support</h3>
+                    <p>Get help with your orders</p>
+                </div>
+                
+                <div class="action-card" onclick="logout()">
+                    <div class="action-icon">🚪</div>
+                    <h3>Logout</h3>
+                    <p>Sign out of your account</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 BuySouqX. All Rights Reserved.</p>
+</footer>
+
+<script>
+function handleSearch(event) {
+    if (event.key === 'Enter') {
+        performSearch();
+    }
+}
+
+function performSearch() {
+    let searchValue = document.getElementById('searchInput').value.trim();
+    if (searchValue) {
+        window.location.href = `products.html?search=${encodeURIComponent(searchValue)}`;
+    }
+}
+
+function loadAccount() {
+    // Check if user is logged in
+    const session = JSON.parse(localStorage.getItem('userSession')) || 
+                   JSON.parse(sessionStorage.getItem('userSession'));
+    
+    if (!session) {
+        alert('Please login to view your account.');
+        window.location.href = 'login.html';
+        return;
+    }
+    
+    // Load user profile
+    loadUserProfile(session);
+    
+    // Load order history
+    loadOrderHistory(session.email);
+}
+
+function loadUserProfile(session) {
+    document.getElementById('displayName').textContent = `${session.firstName} ${session.lastName}`;
+    document.getElementById('displayEmail').textContent = session.email;
+    document.getElementById('displayPhone').textContent = session.phone;
+    
+    // Get registration date from users database
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const user = users.find(u => u.email === session.email);
+    
+    if (user && user.registrationDate) {
+        const regDate = new Date(user.registrationDate);
+        document.getElementById('displayMemberSince').textContent = regDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    } else {
+        document.getElementById('displayMemberSince').textContent = 'Recent';
+    }
+}
+
+function loadOrderHistory(userEmail) {
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const userOrders = orders.filter(order => order.customer.email === userEmail);
+    
+    const ordersList = document.getElementById('ordersList');
+    const orderCount = document.getElementById('orderCount');
+    
+    if (userOrders.length === 0) {
+        ordersList.innerHTML = '<p class="no-orders">You haven\'t placed any orders yet.</p>';
+        orderCount.textContent = '0 orders';
+        return;
+    }
+    
+    orderCount.textContent = `${userOrders.length} order${userOrders.length > 1 ? 's' : ''}`;
+    
+    ordersList.innerHTML = userOrders.reverse().map((order, index) => {
+        const orderDate = new Date(order.orderDate);
+        const orderNumber = userOrders.length - index;
+        
+        return `
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-number">Order #${orderNumber}</div>
+                    <div class="order-date">${orderDate.toLocaleDateString()}</div>
+                    <div class="order-status">${order.status || 'Processing'}</div>
+                </div>
+                <div class="order-items">
+                    <p>${order.items.length} item${order.items.length > 1 ? 's' : ''}</p>
+                </div>
+                <div class="order-total">
+                    <span>Total: ${order.total}</span>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function toggleEditMode() {
+    const profileInfo = document.getElementById('profileInfo');
+    const profileEdit = document.getElementById('profileEdit');
+    
+    if (profileEdit.style.display === 'none') {
+        // Switch to edit mode
+        profileInfo.style.display = 'none';
+        profileEdit.style.display = 'block';
+        
+        // Load current values into edit form
+        const session = JSON.parse(localStorage.getItem('userSession')) || 
+                       JSON.parse(sessionStorage.getItem('userSession'));
+        
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const user = users.find(u => u.email === session.email);
+        
+        if (user) {
+            document.getElementById('editFirstName').value = user.firstName;
+            document.getElementById('editLastName').value = user.lastName;
+            document.getElementById('editEmail').value = user.email;
+            document.getElementById('editPhone').value = user.phone;
+        }
+    } else {
+        // Switch back to view mode
+        profileInfo.style.display = 'block';
+        profileEdit.style.display = 'none';
+    }
+}
+
+function updateProfile(event) {
+    event.preventDefault();
+    
+    const session = JSON.parse(localStorage.getItem('userSession')) || 
+                   JSON.parse(sessionStorage.getItem('userSession'));
+    
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const userIndex = users.findIndex(u => u.email === session.email);
+    
+    if (userIndex === -1) {
+        alert('User not found.');
+        return;
+    }
+    
+    // Update user data
+    users[userIndex] = {
+        ...users[userIndex],
+        firstName: document.getElementById('editFirstName').value,
+        lastName: document.getElementById('editLastName').value,
+        email: document.getElementById('editEmail').value,
+        phone: document.getElementById('editPhone').value
+    };
+    
+    // Save updated users
+    localStorage.setItem('users', JSON.stringify(users));
+    
+    // Update session
+    session.firstName = users[userIndex].firstName;
+    session.lastName = users[userIndex].lastName;
+    session.email = users[userIndex].email;
+    session.phone = users[userIndex].phone;
+    
+    if (localStorage.getItem('userSession')) {
+        localStorage.setItem('userSession', JSON.stringify(session));
+    } else {
+        sessionStorage.setItem('userSession', JSON.stringify(session));
+    }
+    
+    // Reload profile display
+    loadUserProfile(session);
+    toggleEditMode();
+    
+    alert('Profile updated successfully!');
+}
+
+function logout() {
+    if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('userSession');
+        sessionStorage.removeItem('userSession');
+        window.location.href = 'login.html';
+    }
+}
+</script>
+<script src="auth.js"></script>
+<script src="script.js"></script>
+<style>
+.account-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.account-section {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 153, 0, 0.1);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #ff9900;
+}
+
+.section-header h2 {
+    color: #131921;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.edit-btn {
+    background: linear-gradient(135deg, #ff9900 0%, #ffaa00 100%);
+    color: #131921;
+    border: none;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 153, 0, 0.3);
+}
+
+.order-count {
+    color: #6c757d;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.label {
+    font-weight: 600;
+    color: #131921;
+    min-width: 120px;
+}
+
+.value {
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.input-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.input-row .input-group {
+    flex: 1;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #ff9900;
+    box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.1);
+}
+
+.input-group label {
+    position: absolute;
+    top: -8px;
+    left: 10px;
+    background: white;
+    padding: 0 5px;
+    color: #6c757d;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.save-btn {
+    background: linear-gradient(135deg, #28a745 0%, #34ce57 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.cancel-btn:hover {
+    background: #5a6268;
+}
+
+.order-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.order-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.order-number {
+    font-weight: 700;
+    color: #131921;
+}
+
+.order-date {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.order-status {
+    background: #28a745;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.order-items {
+    margin-bottom: 10px;
+}
+
+.order-items p {
+    color: #6c757d;
+    font-size: 14px;
+    margin: 0;
+}
+
+.order-total {
+    text-align: right;
+}
+
+.order-total span {
+    font-weight: 700;
+    color: #b12704;
+    font-size: 16px;
+}
+
+.no-orders {
+    text-align: center;
+    color: #6c757d;
+    padding: 40px 0;
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.action-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: #ff9900;
+}
+
+.action-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.action-card h3 {
+    color: #131921;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+}
+
+.action-card p {
+    color: #6c757d;
+    font-size: 14px;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .account-container {
+        padding: 0 20px;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .input-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .action-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+</body>
+</html>

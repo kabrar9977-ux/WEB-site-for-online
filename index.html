@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuySouqX - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>BuySouqX</h2>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products..." onkeyup="handleSearch(event)">
+        <button type="button" onclick="performSearch(this.closest('.search-bar'))">Search</button>
+    </div>
+    <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart <span class="cart-badge" id="cartBadge">0</span></a>
+        <a href="login.html">Login</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</div>
+
+<div class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <span class="eyebrow">Fast delivery, trusted shopping</span>
+        <h1>BuySouqX makes every purchase easy and secure.</h1>
+        <p>Discover electronics, fashion, bags and home essentials with deals tailored for you.</p>
+        <div class="hero-actions">
+            <a href="products.html" class="btn">Browse Products</a>
+            <a href="contact.html" class="btn btn-outline">Contact Support</a>
+        </div>
+    </div>
+</div>
+
+<div class="section feature-grid">
+    <div class="feature-card">
+        <img src="Electronic.png" alt="Electronics">
+        <h3>Smart Electronics</h3>
+        <p>Latest gadgets for work, fitness and entertainment.</p>
+    </div>
+    <div class="feature-card">
+        <img src="Fashion.png" alt="Fashion">
+        <h3>Style & Apparel</h3>
+        <p>Trendy looks for every season and occasion.</p>
+    </div>
+    <div class="feature-card">
+        <img src="Bags.png" alt="Bags">
+        <h3>Bags & Travel</h3>
+        <p>Premium bags and backpacks built for daily life.</p>
+    </div>
+</div>
+
+<div class="section animated-gallery">
+    <h2>Trending Collections in Motion</h2>
+    <div class="gallery-track">
+        <div class="gallery-item"><img src="Electronic.png" alt="Electronics collection"></div>
+        <div class="gallery-item"><img src="Fashion.png" alt="Fashion collection"></div>
+        <div class="gallery-item"><img src="Bags.png" alt="Bags collection"></div>
+        <div class="gallery-item"><img src="Best.png" alt="Best sellers"></div>
+        <div class="gallery-item"><img src="Easy.png" alt="Easy shopping"></div>
+        <div class="gallery-item"><img src="Electronic.png" alt="Electronics collection"></div>
+        <div class="gallery-item"><img src="Fashion.png" alt="Fashion collection"></div>
+        <div class="gallery-item"><img src="Bags.png" alt="Bags collection"></div>        <div class="gallery-item"><img src="Best.png" alt="Best sellers"></div>
+        <div class="gallery-item"><img src="Easy.png" alt="Easy shopping"></div>    </div>
+</div>
+
+<div class="section split-section">
+    <div class="info-panel">
+        <h2>Why BuySouqX?</h2>
+        <p>We blend fast delivery, secure checkout, and local customer support into one shopping experience. Choose your category and explore smart deals across popular brands.</p>
+        <ul>
+            <li>Free shipping on orders over 250 SAR</li>
+            <li>24/7 support with easy returns</li>
+            <li>Secure checkout and local payment options</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section category-banner">
+
+    <h2>Start by choosing a category</h2>
+    <div class="category-row">
+        <a href="products.html?category=electronics">Electronics</a>
+        <a href="products.html?category=fashion">Fashion</a>
+        <a href="products.html?category=bags">Bags</a>
+        <a href="products.html?category=home">Home</a>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 BuySouqX. All Rights Reserved.</p>
+</footer>
+
+<script src="auth.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
