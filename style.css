@@ -9,7 +9,7 @@ body {
     box-sizing: border-box;
 }
 
-img, video {
+img {
     display: block;
     max-width: 100%;
 }
@@ -30,18 +30,7 @@ img, video {
     margin: 0;
     font-size: 28px;
     font-weight: bold;
-    background: linear-gradient(135deg, #ffcc00 0%, #ff9900 50%, #ff6600 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 5px 15px;
-    border: 2px solid transparent;
-    border-image: linear-gradient(135deg, #ffcc00, #ff9900, #ff6600);
-    border-image-slice: 1;
-    border-radius: 8px;
+    color: #ffcc00;
 }
 
 .nav-links {
@@ -87,14 +76,19 @@ img, video {
     align-items: center;
 }
 
-.hero-overlay {
-    display: none;
-}
 
 .hero-content {
     position: relative;
-    max-width: 90%;
+    max-width: 100%;
     width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 800px;
+}
+
+.hero-text {
+    flex: 1;
 }
 
 .eyebrow {

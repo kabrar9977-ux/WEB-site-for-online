@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     
-    <title>BuySouqX - Cart</title>
+    <title>LUXE WATCHES - Cart</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body onload="showCart()">
 
 <div class="navbar">
-    <h2>BuySouqX</h2>
+    <img src="../logo.png" alt="LUXE WATCHES" style="height: 80px;mix-blend-mode: screen;">
     <div class="nav-links">
         <a href="../index.html">Home</a>
         <a href="products.html">Products</a>
@@ -42,24 +42,11 @@
 </div>
 
 <footer>
-    <p> 2026 BuySouqX. All Rights Reserved.</p>
+    <p>© 2026 LUXE WATCHES. All Rights Reserved.</p>
 </footer>
 
 <script src="../script.js"></script>
 <script>
-function handleSearch(event) {
-    if (event.key === 'Enter') {
-        performSearch();
-    }
-}
-
-function performSearch() {
-    let searchValue = document.getElementById('searchInput').value.trim();
-    if (searchValue) {
-        window.location.href = `products.html?search=${encodeURIComponent(searchValue)}`;
-    }
-}
-
 function goToCheckout() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     if (cart.length === 0) {

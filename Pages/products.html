@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>BuySouqX - Products</title>
+    <title>LUXE WATCHES - Products</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
 <div class="navbar">
-    <h2>BuySouqX</h2>
+    <img src="../logo.png" alt="LUXE WATCHES" style="height: 80px;mix-blend-mode: screen;">
     <div class="nav-links">
         <a href="../index.html">Home</a>
         <a href="products.html" class="active">Products</a>
@@ -26,65 +26,97 @@
     <input type="text" id="searchBox" placeholder="Search all products" oninput="filterProducts()">
     <select id="categoryFilter" onchange="filterProducts()">
         <option value="all">All categories</option>
-        <option value="electronics">Electronics</option>
-        <option value="fashion">Fashion</option>
-        <option value="bags">Bags</option>
-        <option value="home">Home</option>
+        <option value="jacob co">Jacob & Co</option>
+        <option value="richard mille">Richard Mille</option>
+        <option value="rolex">Rolex</option>
+        <option value="franck muller">Franck Muller</option>
+        <option value="hublot">Hublot</option>
     </select>
 </div>
-
 <div class="section product-grid">
-    <div class="product-box" data-name="smart watch" data-category="electronics">
-        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=220&h=180&fit=crop" alt="Smart Watch">
-        <h3>Smart Watch</h3>
-        <p>Advanced smartwatch with fitness tracking, heart rate monitor, GPS, and smartphone notifications. Water-resistant design with long battery life.</p>
-        <h4>150 SAR</h4>
-        <button onclick="addToCart('Smart Watch', 150)">Add to Cart</button>
+    <div class="product-box" data-name="jacob co bugatti chiron tourbillon" data-category="jacob co">
+        <img src="../Jacob & Co Bugatti Chiron Tourbillon.png" alt="Jacob & Co Bugatti Chiron Tourbillon">
+        <h3>Jacob & Co Bugatti Chiron Tourbillon</h3>
+        <p>Exceptional luxury timepiece inspired by the Bugatti Chiron. Features tourbillon movement, skeletonized dial, and exquisite craftsmanship.</p>
+        <h4>450000 SAR</h4>
+        <button onclick="addToCart('Jacob & Co Bugatti Chiron Tourbillon', 450000)">Add to Cart</button>
     </div>
 
-    <div class="product-box" data-name="headphones" data-category="electronics">
-        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=220&h=180&fit=crop" alt="Headphones">
-        <h3>Headphones</h3>
-        <p>Premium wireless headphones with active noise cancellation, 30-hour battery life, and crystal-clear audio quality. Perfect for travel, work, and gaming.</p>
-        <h4>200 SAR</h4>
-        <button onclick="addToCart('Headphones', 200)">Add to Cart</button>
+    <div class="product-box" data-name="jacob co chiron tourbillon" data-category="jacob co">
+        <img src="../Jacob & Co Chiron Tourbillon New.png" alt="Jacob & Co Chiron Tourbillon">
+        <h3>Jacob & Co Chiron Tourbillon</h3>
+        <p>Masterpiece of horology with tourbillon complication, inspired by automotive excellence. Limited edition luxury watch.</p>
+        <h4>380000 SAR</h4>
+        <button onclick="addToCart('Jacob & Co Chiron Tourbillon', 380000)">Add to Cart</button>
     </div>
 
-    <div class="product-box" data-name="laptop" data-category="electronics">
-        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=220&h=180&fit=crop" alt="Laptop">
-        <h3>Laptop</h3>
-        <p>High-performance laptop with fast processor, ample RAM, and SSD storage. Ideal for work, study, entertainment, and creative projects.</p>
-        <h4>2500 SAR</h4>
-        <button onclick="addToCart('Laptop', 2500)">Add to Cart</button>
+    <div class="product-box" data-name="richard mille rm037" data-category="richard mille">
+        <img src="../Richard Mille RM037.png" alt="Richard Mille RM037">
+        <h3>Richard Mille RM037</h3>
+        <p>Iconic Richard Mille timepiece with tonneau case, automatic movement, and exceptional craftsmanship. A symbol of luxury and innovation.</p>
+        <h4>850000 SAR</h4>
+        <button onclick="addToCart('Richard Mille RM037', 850000)">Add to Cart</button>
     </div>
 
-    <div class="product-box" data-name="t-shirt" data-category="fashion">
-        <img src="../Fashion.png" alt="T-Shirt">
-        <h3>T-Shirt</h3>
-        <p>100% cotton premium quality t-shirt with comfortable fit and breathable fabric. Available in various colors and sizes for casual everyday wear.</p>
-        <h4>50 SAR</h4>
-        <button onclick="addToCart('T-Shirt', 50)">Add to Cart</button>
+    <div class="product-box" data-name="richard mille rm07-01" data-category="richard mille">
+        <img src="../Richard Mille RM07-01.png" alt="Richard Mille RM07-01">
+        <h3>Richard Mille RM07-01</h3>
+        <p>Elegant ladies' timepiece with carbon TPT case, automatic movement, and sophisticated design. Perfect blend of style and technology.</p>
+        <h4>650000 SAR</h4>
+        <button onclick="addToCart('Richard Mille RM07-01', 650000)">Add to Cart</button>
     </div>
 
-    <div class="product-box" data-name="sneakers" data-category="fashion">
-        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=220&h=180&fit=crop" alt="Sneakers">
-        <h3>Sneakers</h3>
-        <p>Stylish and comfortable sneakers with cushioned sole and breathable upper. Perfect for sports, walking, and casual outings with all-day comfort.</p>
-        <h4>300 SAR</h4>
-        <button onclick="addToCart('Sneakers', 300)">Add to Cart</button>
+    <div class="product-box" data-name="rolex daytona" data-category="rolex">
+        <img src="../Rolex Daytona.png" alt="Rolex Daytona">
+        <h3>Rolex Daytona</h3>
+        <p>Legendary chronograph watch with tachymeter bezel, automatic movement, and iconic design. The ultimate racing-inspired timepiece.</p>
+        <h4>120000 SAR</h4>
+        <button onclick="addToCart('Rolex Daytona', 120000)">Add to Cart</button>
     </div>
 
-    <div class="product-box" data-name="backpack" data-category="bags">
-        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=220&h=180&fit=crop" alt="Backpack">
-        <h3>Backpack</h3>
-        <p>Spacious and durable backpack with multiple compartments, padded laptop sleeve, and comfortable straps. Great for work, school, and travel.</p>
-        <h4>120 SAR</h4>
-        <button onclick="addToCart('Backpack', 120)">Add to Cart</button>
+    <div class="product-box" data-name="rolex sky-dweller" data-category="rolex">
+        <img src="../Rolex Sky-Dweller.png" alt="Rolex Sky-Dweller">
+        <h3>Rolex Sky-Dweller</h3>
+        <p>Sophisticated dual time zone watch with annual calendar, GMT function, and innovative Ring Command bezel. Perfect for world travelers.</p>
+        <h4>145000 SAR</h4>
+        <button onclick="addToCart('Rolex Sky-Dweller', 145000)">Add to Cart</button>
+    </div>
+
+    <div class="product-box" data-name="franck muller vanguard" data-category="franck muller">
+        <img src="../Franck Muller Vanguard.png" alt="Franck Muller Vanguard">
+        <h3>Franck Muller Vanguard</h3>
+        <p>Distinctive tonneau-shaped timepiece with bold numerals and exceptional craftsmanship. A statement piece for the discerning collector.</p>
+        <h4>280000 SAR</h4>
+        <button onclick="addToCart('Franck Muller Vanguard', 280000)">Add to Cart</button>
+    </div>
+
+    <div class="product-box" data-name="hublot mp-05 laferrari" data-category="hublot">
+        <img src="../Hublot Hublot MP-05 LaFerrari Titanium Yellow.png" alt="Hublot MP-05 LaFerrari">
+        <h3>Hublot MP-05 LaFerrari</h3>
+        <p>Inspired by the Ferrari LaFerrari supercar, this watch features a 50-day power reserve and vertical tourbillon. A masterpiece of engineering.</p>
+        <h4>520000 SAR</h4>
+        <button onclick="addToCart('Hublot MP-05 LaFerrari', 520000)">Add to Cart</button>
+    </div>
+
+    <div class="product-box" data-name="jacob co chiron tourbillon original" data-category="jacob co">
+        <img src="../Jacob & Co Chiron Tourbillon.png" alt="Jacob & Co Chiron Tourbillon">
+        <h3>Jacob & Co Chiron Tourbillon</h3>
+        <p>Original Chiron Tourbillon with automotive-inspired design, featuring tourbillon movement and skeletonized dial. Pure luxury and innovation.</p>
+        <h4>420000 SAR</h4>
+        <button onclick="addToCart('Jacob & Co Chiron Tourbillon', 420000)">Add to Cart</button>
+    </div>
+
+    <div class="product-box" data-name="richard mille rm037 rg tzp" data-category="richard mille">
+        <img src="../Richard Mille RM037 RG TZP.png" alt="Richard Mille RM037 RG TZP">
+        <h3>Richard Mille RM037 RG TZP</h3>
+        <p>Premium version with red gold case and TZP ceramic bezel. Exceptional durability and elegance with automatic movement.</p>
+        <h4>950000 SAR</h4>
+        <button onclick="addToCart('Richard Mille RM037 RG TZP', 950000)">Add to Cart</button>
     </div>
 </div>
 
 <footer>
-    <p>© 2026 BuySouqX. All Rights Reserved.</p>
+    <p>© 2026 LUXE WATCHES. All Rights Reserved.</p>
 </footer>
 
 <script src="../script.js"></script>

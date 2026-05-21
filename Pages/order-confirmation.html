@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LUXE WATCHES - Order Confirmation</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <img src="../logo.png" alt="LUXE WATCHES" style="height: 80px;mix-blend-mode: screen;">
+    <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart <span class="cart-badge" id="cartBadge">0</span></a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</div>
+
+<div class="page-header">
+    <h1>Order Confirmed!</h1>
+    <p>Thank you for your purchase</p>
+</div>
+
+<div class="section">
+    <div class="form-box">
+        <div style="text-align: center;">
+            <div style="font-size: 80px; margin-bottom: 20px;">✅</div>
+            <h2 style="color: #2d5a2d; margin-bottom: 20px;">Your Order Has Been Placed Successfully!</h2>
+            <p style="color: #4b5563; line-height: 1.8; margin-bottom: 30px;">
+                Thank you for shopping with LUXE WATCHES. We've received your order and will process it shortly. 
+                You will receive a confirmation email with your order details shortly.
+            </p>
+
+            <div style="background: #f0f5f0; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+                <h3 style="margin-top: 0;">Our Premium Watch Collection</h3>
+                <p style="margin-bottom: 15px;">Explore our luxury timepieces by brand:</p>
+                
+                <h4 style="margin: 15px 0 10px;">Jacob & Co</h4>
+                <ul style="text-align: left; padding-left: 20px; margin: 0;">
+                    <li>Jacob & Co Bugatti Chiron Tourbillon</li>
+                    <li>Jacob & Co Chiron Tourbillon</li>
+                    <li>Jacob & Co Chiron Tourbillon (Original)</li>
+                </ul>
+                
+                <h4 style="margin: 15px 0 10px;">Richard Mille</h4>
+                <ul style="text-align: left; padding-left: 20px; margin: 0;">
+                    <li>Richard Mille RM037</li>
+                    <li>Richard Mille RM07-01</li>
+                    <li>Richard Mille RM037 RG TZP</li>
+                </ul>
+                
+                <h4 style="margin: 15px 0 10px;">Rolex</h4>
+                <ul style="text-align: left; padding-left: 20px; margin: 0;">
+                    <li>Rolex Daytona</li>
+                    <li>Rolex Sky-Dweller</li>
+                </ul>
+                
+                <h4 style="margin: 15px 0 10px;">Franck Muller</h4>
+                <ul style="text-align: left; padding-left: 20px; margin: 0;">
+                    <li>Franck Muller Vanguard</li>
+                </ul>
+                
+                <h4 style="margin: 15px 0 10px;">Hublot</h4>
+                <ul style="text-align: left; padding-left: 20px; margin: 0;">
+                    <li>Hublot MP-05 LaFerrari</li>
+                </ul>
+            </div>
+            
+            <div style="background: #f0f5f0; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+                <h3 style="margin-top: 0;">Order Information</h3>
+                <p><strong>Order Number:</strong> <span id="orderNumber"></span></p>
+                <p><strong>Date:</strong> <span id="orderDate"></span></p>
+                <p><strong>Total:</strong> <span id="orderTotal"></span></p>
+            </div>
+            
+            <button onclick="window.location.href='../index.html'" style="width: auto; padding: 15px 30px;">Continue Shopping</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 LUXE WATCHES. All Rights Reserved.</p>
+</footer>
+
+<script src="../script.js"></script>
+
+<script>
+window.onload = function() {
+    // Get the last order from localStorage
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    if (orders.length > 0) {
+        let lastOrder = orders[orders.length - 1];
+        document.getElementById("orderNumber").textContent = "#" + orders.length;
+        document.getElementById("orderDate").textContent = new Date(lastOrder.orderDate).toLocaleDateString();
+        document.getElementById("orderTotal").textContent = lastOrder.total;
+    }
+    
+    updateCartBadge();
+};
+</script>
+
+</body>
+</html>

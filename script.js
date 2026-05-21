@@ -90,15 +90,6 @@ function clearCart() {
     showCart();
 }
 
-function checkout() {
-    const cart = getCart();
-    if (cart.length === 0) {
-        alert('Your cart is empty.');
-        return;
-    }
-    window.location.href = 'Checkout.html';
-}
-
 function filterProducts() {
     const searchText = document.getElementById('searchBox')?.value.toLowerCase() || '';
     const selectedCategory = document.getElementById('categoryFilter')?.value || 'all';
@@ -129,24 +120,6 @@ function applySearchAndCategoryFromQuery() {
     if (searchBox || categoryFilter) {
         filterProducts();
     }
-}
-
-function handleSearch(event) {
-    if (event.key === 'Enter') {
-        performSearch(event.target.closest('.search-bar'));
-    }
-}
-
-function performSearch(container) {
-    const input = container?.querySelector('input[type=text]') || document.getElementById('searchInput');
-    if (!input) {
-        return;
-    }
-    const value = input.value.trim();
-    if (!value) {
-        return;
-    }
-    window.location.href = `products.html?search=${encodeURIComponent(value)}`;
 }
 
 function sendContactMessage(event) {
