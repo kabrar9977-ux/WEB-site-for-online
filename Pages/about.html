@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BuySouqX - About Us</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>BuySouqX</h2>
+    <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart <span class="cart-badge" id="cartBadge">0</span></a>
+        <a href="about.html" class="active">About Us</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</div>
+
+<div class="page-header">
+    <h1>About BuySouqX</h1>
+    <p>Your trusted online shopping destination for electronics, fashion, and more</p>
+</div>
+
+<div class="section">
+    <div class="form-box">
+        <h2>Our Story</h2>
+        <p>BuySouqX was founded with a simple mission: to make online shopping easy, secure, and accessible for everyone. We believe that shopping should be a delightful experience, not a chore.</p>
+        
+        <h2>What We Offer</h2>
+        <p>We curate the best products across multiple categories including:</p>
+        <ul>
+            <li>Smart Electronics - Latest gadgets for work, fitness, and entertainment</li>
+            <li>Style & Apparel - Trendy looks for every season and occasion</li>
+            <li>Bags & Travel - Premium bags and backpacks built for daily life</li>
+            <li>Home Essentials - Everything you need to make your house a home</li>
+        </ul>
+        
+        <h2>Our Values</h2>
+        <p><strong>Customer First:</strong> Your satisfaction is our top priority. We're committed to providing excellent service and support.</p>
+        <p><strong>Quality Assurance:</strong> We carefully select our products to ensure you receive only the best.</p>
+        <p><strong>Secure Shopping:</strong> Your security matters. We use the latest encryption and security measures.</p>
+        <p><strong>Fast Delivery:</strong> Get your orders quickly with our reliable shipping partners.</p>
+        
+        <h2>Why Choose Us?</h2>
+        <ul>
+            <li>Free shipping on orders over 250 SAR</li>
+            <li>24/7 customer support with easy returns</li>
+            <li>Secure checkout and local payment options</li>
+            <li>Wide selection of quality products</li>
+            <li>Competitive prices and regular deals</li>
+        </ul>
+        
+        <h2>Contact Us</h2>
+        <p>Have questions? We'd love to hear from you. Reach out to us through our <a href="contact.html">Contact page</a> and we'll get back to you as soon as possible.</p>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 BuySouqX. All Rights Reserved.</p>
+</footer>
+
+<script src="../script.js"></script>
+
+<script>
+function handleSearch(event) {
+    if (event.key === 'Enter') {
+        performSearch();
+    }
+}
+
+function performSearch() {
+    let searchValue = document.getElementById('searchInput').value.trim();
+    if (searchValue) {
+        window.location.href = `products.html?search=${encodeURIComponent(searchValue)}`;
+    }
+}
+</script>
+
+</body>
+</html>

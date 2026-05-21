@@ -1,26 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>BuySouqX - Cart</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body onload="showCart()">
 
 <div class="navbar">
     <h2>BuySouqX</h2>
-
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search products..." onkeyup="handleSearch(event)">
-        <button type="button" onclick="performSearch(this.closest('.search-bar'))">Search</button>
-    </div>
-
     <div class="nav-links">
-        <a href="index.html">Home</a>
+        <a href="../index.html">Home</a>
         <a href="products.html">Products</a>
         <a href="cart.html" class="active">Cart <span class="cart-badge" id="cartBadge">0</span></a>
-        <a href="login.html">Login</a>
+        <a href="about.html">About Us</a>
         <a href="contact.html">Contact</a>
     </div>
 </div>
@@ -52,8 +45,7 @@
     <p> 2026 BuySouqX. All Rights Reserved.</p>
 </footer>
 
-<script src="script.js"></script>
-<script src="auth.js"></script>
+<script src="../script.js"></script>
 <script>
 function handleSearch(event) {
     if (event.key === 'Enter') {
