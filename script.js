@@ -67,7 +67,7 @@ function showCart() {
             <div class="cart-item">
                 <div>
                     <strong>${item.name}</strong>
-                    <div class="cart-quantity">${item.price} SAR × ${item.quantity}</div>
+                    <div class="cart-quantity">${item.price} SAR</div>
                 </div>
                 <button class="small-btn" onclick="removeItem(${index})">Remove</button>
             </div>
