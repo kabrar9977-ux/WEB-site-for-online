@@ -255,7 +255,7 @@ img {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 24px;
-    text-align: left;
+    text-align: auto;
 }
 
 .product-box {
@@ -264,16 +264,27 @@ img {
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
     border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-box img {
+    height: 200px;
+    object-fit: contain;
+    margin: 0 auto;
 }
 
 .product-box h3 {
     margin: 16px 0 10px;
     font-size: 1.15rem;
+    min-height: 50px;
 }
 
 .product-box p {
     color: #6c757d;
     margin: 0 0 16px;
+    flex-grow: 1;
 }
 
 .product-box h4 {
@@ -285,6 +296,7 @@ img {
 .product-box button {
     width: 100%;
     border-radius: 999px;
+    margin-top: auto;
 }
 
 .cart-box {
